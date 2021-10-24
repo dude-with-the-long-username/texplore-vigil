@@ -1,4 +1,10 @@
+
+./functions/util/config.js  #Ignoring API key file
+
+
 .history/ #avoiding things in .history folder
+
+
 
 # Logs
 logs
