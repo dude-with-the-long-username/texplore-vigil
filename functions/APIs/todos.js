@@ -33,11 +33,11 @@ exports.getAllTodos = (request, response) => {
 
 exports.postOneTodo = (request, response) => {
 	if (request.body.body.trim() === '') {
-		return response.status(400).json({ body: 'Must not be empty' });
+		return response.status(400).json({ body: 'Body Must not be empty' });
     }
     
     if(request.body.title.trim() === '') {
-        return response.status(400).json({ title: 'Must not be empty' });
+        return response.status(400).json({ title: 'Title Must not be empty' });
     }
     
     const newTodoItem = {
@@ -62,6 +62,7 @@ exports.postOneTodo = (request, response) => {
 
 
 // Delete Todo 
+
 exports.deleteTodo = (request, response) => {
     const document = db.doc(`/todos/${request.params.todoId}`);
     document
@@ -79,4 +80,25 @@ exports.deleteTodo = (request, response) => {
             console.error(err);
             return response.status(500).json({ error: err.code });
         });
+};
+
+
+
+// Edit Todo 
+
+exports.editTodo = ( request, response ) => { 
+    if(request.body.todoId || request.body.createdAt){
+        response.status(403).json({message: 'User is not allowed to edit TodoId or CreatedAt field'});
+    }
+    let document = db.collection('todos').doc(`${request.params.todoId}`);
+    document.update(request.body)
+    .then(()=> {
+        response.json({message: 'Updated successfully'});
+    })
+    .catch((err) => {
+        console.error(err);
+        return response.status(500).json({ 
+                error: err.code 
+        });
+    });
 };
