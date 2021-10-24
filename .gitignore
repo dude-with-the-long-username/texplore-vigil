@@ -1,3 +1,5 @@
+.history/ #avoiding things in .history folder
+
 # Logs
 logs
 *.log
