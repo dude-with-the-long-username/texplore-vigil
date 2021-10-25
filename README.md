@@ -8,3 +8,7 @@ Copy firebase API key to folder and run
 
 To run locally: `firebase serve`
 To deploy to remote server: `firebase deploy`
+
+
+#### Credits:
+Based on [freecodecamp tutorial](https://www.freecodecamp.org/news/how-to-build-a-todo-application-using-reactjs-and-firebase/)
